@@ -8,7 +8,6 @@
           <include name="setup"/>
           <include name="changePassword"/>
           <include name="posttest"/>
-          <include name="creatAcount"/>
         </methods>
       </class> <!-- test.testPage -->
     </classes>

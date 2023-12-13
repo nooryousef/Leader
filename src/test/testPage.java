@@ -22,46 +22,62 @@ public class testPage  extends Parameter {
 	@BeforeTest
 	public void setup() {
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(3));
 
 
 	}
 	
 	
-	@Test(priority = 1)
-	public void  creatAcount()  {
+	@Test(priority= 1)
+	public void  creatAcount() throws InterruptedException  {
 		driver.get(signInUrl);
-		WebElement Theemail = driver.findElement(By.id ("username"));
-		WebElement Thepasword = driver.findElement(By.id("password"));
+		WebElement Theemail = driver.findElement(By.id ("reg_email"));
+		WebElement Thepasword = driver.findElement(By.id("reg_password"));
 		
 		Theemail.sendKeys(email_address);
 		Thepasword.sendKeys(paswordnum); 
 		
-		WebElement thebouttun = driver.findElement(By.xpath(signInBotun));
-
+		WebElement thebouttun = driver.findElement(By.className("woocommerce-Button"));
 		thebouttun.click();
+		driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(3));
+		
+Thread.sleep(10);
+
+WebElement email = driver.findElement(By.id ("username"));
+WebElement pasword = driver.findElement(By.id("password"));
+	
+	email.sendKeys(email_address);
+	pasword.sendKeys(paswordnum); 
+	
+
+	WebElement donebouttun = driver.findElement(By.xpath(doneXpath));
+
+	donebouttun.click();
+	
+		
 		
 		}
 	
 	
-	@Test(priority = 2)
-	public void  signup() throws InterruptedException  {
-		WebElement email = driver.findElement(By.id (idEmail));
-	WebElement pasword = driver.findElement(By.id(idPassword));
-		
-		email.sendKeys(email_address);
-		pasword.sendKeys(paswordnum); 
-		
-
-		WebElement donebouttun = driver.findElement(By.xpath(doneXpath));
-		Thread.sleep(10);
-
-		donebouttun.click();
-		
-		
-	}
+//	@Test(priority = 2)
+//	public void  login() throws InterruptedException  {
+//
+//		WebElement email = driver.findElement(By.id ("username"));
+//	WebElement pasword = driver.findElement(By.id("password"));
+//		
+//		email.sendKeys(email_address);
+//		pasword.sendKeys(paswordnum); 
+//		
+//
+//		WebElement donebouttun = driver.findElement(By.xpath(doneXpath));
+//
+//		donebouttun.click();
+//		
+//		
+//	}
   @Test(priority = 3)
   public void  changePassword()  {
-  	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+//  	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   	driver.get(passwordUrl);
 	WebElement firstName = driver.findElement(By.id (Namef));
 	WebElement lastName = driver.findElement(By.id(Namel));
@@ -94,6 +110,7 @@ public class testPage  extends Parameter {
 
 	
 		String Abc =allItems.get(randomItem).getAttribute("href");
+		Thread.sleep(5);
 		driver.get(Abc);
 		
 	}
