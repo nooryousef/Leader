@@ -22,7 +22,6 @@ public class testPage  extends Parameter {
 	@BeforeTest
 	public void setup() {
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(3));
 
 
 	}
@@ -30,7 +29,6 @@ public class testPage  extends Parameter {
 	
 	@Test(priority = 1)
 	public void  creatAcount()  {
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.get(signInUrl);
 		WebElement Theemail = driver.findElement(By.id ("username"));
 		WebElement Thepasword = driver.findElement(By.id("password"));
@@ -39,15 +37,14 @@ public class testPage  extends Parameter {
 		Thepasword.sendKeys(paswordnum); 
 		
 		WebElement thebouttun = driver.findElement(By.xpath(signInBotun));
+
 		thebouttun.click();
 		
 		}
 	
 	
 	@Test(priority = 2)
-	public void  signup()  {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		
+	public void  signup() throws InterruptedException  {
 		WebElement email = driver.findElement(By.id (idEmail));
 	WebElement pasword = driver.findElement(By.id(idPassword));
 		
@@ -56,6 +53,8 @@ public class testPage  extends Parameter {
 		
 
 		WebElement donebouttun = driver.findElement(By.xpath(doneXpath));
+		Thread.sleep(10);
+
 		donebouttun.click();
 		
 		
@@ -84,18 +83,18 @@ public class testPage  extends Parameter {
 		endbouttun.click();
 	 
   }
-
-	
 	
 	@Test(priority = 4)
 	public void  randomItem() throws InterruptedException  {
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.get(url);
-		
-		WebElement ItemsContainer = driver.findElement(By.xpath(Thecontaner));
-		List<WebElement> allItems = ItemsContainer.findElements(By.tagName("li"));
+		driver.get("https://leaders.jo/en/lg/");
+		WebElement ItemsContainer = driver.findElement(By.className("row-cols-2"));
+		List<WebElement> allItems = ItemsContainer.findElements(By.className("ajax_add_to_cart"));
 		int randomItem = rand.nextInt(allItems.size());
-		allItems.get(randomItem).click();
+
+
+	
+		String Abc =allItems.get(randomItem).getAttribute("href");
+		driver.get(Abc);
 		
 	}
 	

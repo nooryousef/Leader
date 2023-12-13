@@ -9,7 +9,6 @@
           <include name="changePassword"/>
           <include name="posttest"/>
           <include name="creatAcount"/>
-          <include name="randomItem"/>
         </methods>
       </class> <!-- test.testPage -->
     </classes>
